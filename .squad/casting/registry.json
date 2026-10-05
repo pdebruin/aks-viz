@@ -1,0 +1,41 @@
+{
+  "schema": "squad-agent-provenance/v1",
+  "schema_version": 1,
+  "revision": 2,
+  "generated_at": "2026-10-05T15:24:06+02:00",
+  "agents": {
+    "lead": {
+      "persistent_name": "Lead",
+      "role": "Lead",
+      "universe": "descriptive",
+      "created_at": "2026-10-05T15:24:06+02:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "frontend": {
+      "persistent_name": "Frontend",
+      "role": "Frontend Dev",
+      "universe": "descriptive",
+      "created_at": "2026-10-05T15:24:06+02:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "kube": {
+      "persistent_name": "Kube",
+      "role": "Kubernetes",
+      "universe": "descriptive",
+      "created_at": "2026-10-05T15:24:06+02:00",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "tester": {
+      "persistent_name": "Tester",
+      "role": "Tester",
+      "universe": "descriptive",
+      "created_at": "2026-10-05T15:24:06+02:00",
+      "legacy_named": false,
+      "status": "active"
+    }
+  },
+  "transaction_id": "ac63d685-9b7b-4bf2-a22d-eaea5210443f"
+}

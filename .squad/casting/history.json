@@ -1,0 +1,23 @@
+{
+  "universe_usage_history": [
+    {
+      "universe": "descriptive",
+      "assignment_id": "assign-ac63d685",
+      "used_at": "2026-10-05T15:24:06+02:00"
+    }
+  ],
+  "assignment_cast_snapshots": {
+    "assign-ac63d685": {
+      "universe": "descriptive",
+      "created_at": "2026-10-05T15:24:06+02:00",
+      "agents": {
+        "lead": "Lead",
+        "frontend": "Frontend Dev",
+        "kube": "Kubernetes",
+        "tester": "Tester"
+      }
+    }
+  },
+  "transaction_id": "ac63d685-9b7b-4bf2-a22d-eaea5210443f",
+  "registry_revision": 2
+}
