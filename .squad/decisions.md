@@ -2,7 +2,9 @@
 
 ## Active Decisions
 
-No decisions recorded yet.
+### 2026-10-05: UI conventions follow Headlamp
+
+UI conventions follow Headlamp's documentation and existing views (status colors, MUI version, components). Revisit when implementation contradicts them.
 
 ## Governance
 
