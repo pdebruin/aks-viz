@@ -1,6 +1,14 @@
 # aks-viz requirements draft, derived from docker-swarm-visualizer
 
-Status: draft for review. Author: Lead. Date: 2026-10-05.
+Author: Lead. Date: 2026-10-05.
+
+## Status in the proof of concept
+
+Row numbers refer to the capability table.
+
+- Built: 1, 2, 3, 4, 5, 8 (including Cordoned), 11, 18, 19, 27, 28, 30, 33, 39, 43.
+- Built differently: 12 (completed pods shown faded, no toggle), 13 (workload name with the pod suffix, full pod name in the tooltip), 20 (color edge only for workloads on more than one node, assigned by name order), 21 and 22 (one-line rows; a column takes a third of the row for up to 3 nodes, a quarter otherwise, at least 340px), 29 (a failed list shows an error and hides the numbers that depend on it), 31 (plain tooltip with name and state).
+- Open: 6, 7, 9, 10, 14, 15, 16, 17, 23, 24, 26, unscheduled pods and the namespace filter from section 3.
 
 ## Source and scope
 

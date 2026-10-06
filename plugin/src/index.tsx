@@ -1,6 +1,5 @@
 import { registerRoute, registerSidebarEntry } from '@kinvolk/headlamp-plugin/lib';
-import { NodeView } from './components/NodeView';
-import { ClusterResourcesProvider } from './data';
+import { NodeView } from './NodeView';
 
 registerSidebarEntry({
   parent: null,
@@ -15,9 +14,5 @@ registerRoute({
   sidebar: 'aks-node-viz',
   name: 'aks-node-viz',
   exact: true,
-  component: () => (
-    <ClusterResourcesProvider>
-      <NodeView />
-    </ClusterResourcesProvider>
-  ),
+  component: NodeView,
 });

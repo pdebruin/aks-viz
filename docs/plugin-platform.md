@@ -6,7 +6,7 @@ Author: Kube. Date: 2026-10-05. Status: research findings, no code written.
 
 Build with `@kinvolk/headlamp-plugin` 0.14.0 on Node 22+. AKS Desktop is not a Headlamp fork or submodule: it pins one Headlamp commit and applies a patch series. The SDK version does not need to match; Headlamp only rejects plugins built with SDK versions below 0.8.0-alpha.3.
 
-The main blocker for the dev loop: `npm start` copies the plugin into the `Headlamp` profile directory, but packaged AKS Desktop reads plugins from its own `AKS desktop` profile directory. So `npm start` in WSL does not reach the Windows AKS Desktop app. Either copy the built plugin into the AKS Desktop directory on the Windows side, or run AKS Desktop from source in development mode, where the profile name is `Headlamp`.
+Dev loop: `npm start` copies the plugin into the `Headlamp` profile directory, but packaged AKS Desktop reads plugins from its own `AKS-Desktop` profile directory. This repo runs the AKS Desktop Linux package inside WSL and installs with `npm run install:aks-desktop` (plugin/scripts/install-dev.sh), which builds and copies `dist/main.js` and `package.json` into `~/.config/AKS-Desktop/plugins/<name>/`, or `~/.local/share/AKS-Desktop/plugins/<name>/` if that directory exists.
 
 ## Sources read
 
@@ -64,14 +64,11 @@ Resulting paths. unsourced reasoning: derived from the code above, not observed 
 - The Headlamp docs list the desktop plugin directory as `$HOME/.config/Headlamp/plugins` (Linux/macOS) and `%APPDATA%/Headlamp/Config/plugins` (Windows). Source: building.md, "Manual installation" table.
 - That does not hold for AKS Desktop. The code uses the product name, not `Headlamp`, and prefers the data dir over the config dir. Also, the `plugins` directory the docs point to is the development directory in the code, which packaged apps load only when Plugin Development Mode is on.
 
-### `npm start` target and the WSL gap
+### `npm start` target and the install script
 
 - `headlamp-plugin start` copies the build to `envPaths('Headlamp')/plugins/<package-name>`, preferring data over config. The name `Headlamp` is hardcoded. This is true in both the published 0.14.0 bin and the pinned source. Source: bin/headlamp-plugin.js, `copyToPluginsFolder`.
-- Run in WSL, it writes to the WSL Linux filesystem (`~/.local/share/Headlamp/plugins` or `~/.config/Headlamp/plugins`). The Windows AKS Desktop app never reads that path, for two reasons: it is on the WSL side, and the profile name is wrong.
-- unsourced reasoning: ways to bridge it.
-  - Copy option: run `npm run build` in WSL, then copy `dist/main.js` and `package.json` into `/mnt/c/Users/<winuser>/AppData/Local/AKS desktop/Data/plugins/<name>/`, or the `AppData/Roaming/.../Config/plugins/` variant if `Data` does not exist. Then enable Plugin Development Mode in AKS Desktop. Alternatively, `npx @kinvolk/headlamp-plugin extract <dir-of-plugins> <target>` copies built plugins to a target directory. Source for extract: building.md, "Extracting Built Plugins".
-  - Rebuild loop: wrapping that copy in a file watcher gives near hot reload. Headlamp watches the plugins dir for changes (`--watch-plugins-changes` backend arg, main.ts). Whether a packaged build enables that by default was not verified.
-  - Run from source: clone aks-desktop and run `npm run dev`. `dev:services` runs `plugin:start` alongside the Headlamp backend, frontend and Electron app. Source: aks-desktop package.json scripts. In dev mode the profile is `Headlamp`, so a separate `npm start` of our plugin lands where the app reads. Inside WSL this needs a GUI (WSLg); not verified.
+- Packaged AKS Desktop uses the profile name `AKS-Desktop`, so it reads `~/.config/AKS-Desktop/plugins` (or the `~/.local/share` variant), not the `Headlamp` path. Source: AKS Desktop 0.10.0 deb, resources/app/build/main.js.
+- `npm run install:aks-desktop` builds and copies into the AKS Desktop path, mirroring the data-before-config rule. Source: plugin/scripts/install-dev.sh.
 
 ### Enabling
 
