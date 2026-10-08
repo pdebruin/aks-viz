@@ -17,7 +17,7 @@ Lists are watched live and limited to the selected cluster. If a list fails, for
 
 ## How it started
 
-On AKS Automatic, a node's page in AKS Desktop shows its YAML and events. This plugin answers the question: what is on this node, and how full is it?
+On AKS Automatic, a node's page shows its YAML and events. This plugin answers the question: what is on this node, and how full is it?
 
 Ten years ago, Docker Swarm Visualizer (https://github.com/dockersamples/docker-swarm-visualizer) answered it for Swarm: one column per node, one card per task. Its capabilities served as requirements. AKS Desktop (https://github.com/Azure/aks-desktop) is built on Headlamp (https://headlamp.dev), so a Headlamp plugin runs inside it and uses the signed-in user's own cluster credentials.
 
